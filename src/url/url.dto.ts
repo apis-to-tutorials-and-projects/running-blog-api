@@ -6,6 +6,8 @@ import {
   Min,
   IsArray,
   ArrayMinSize,
+  IsBoolean,
+  isNumber,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -26,9 +28,13 @@ export class ShortenURLDto {
   @IsArray()
   @ArrayMinSize(2)
   keywords: string[];
+
+  @IsOptional()
+  @IsBoolean()
+  bookmark: boolean = false;
 }
 
-export class PaginationParams {
+export class QueryParams {
   @IsOptional()
   @Type(() => Number)
   @IsNumber()
@@ -40,4 +46,9 @@ export class PaginationParams {
   @IsNumber()
   @Min(1)
   items?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  bookmark?: number;
 }

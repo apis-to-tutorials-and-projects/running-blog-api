@@ -19,7 +19,7 @@ export class AppService {
     model: Model<unknown>,
     page: number = 1,
     itemsPage: number = 20,
-    filter: object = {}
+    filter = {}
   ) {
     // Check items per page
     if (itemsPage < 1 || itemsPage > 20) {
@@ -28,7 +28,7 @@ export class AppService {
     if (page < 1) {
       page = 1;
     }
-    const total = await model.count();
+    const total = await model.find(filter).count();
     const pages = Math.ceil(total / itemsPage);
     return {
       skip: (page - 1) * itemsPage,

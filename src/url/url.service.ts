@@ -14,10 +14,13 @@ import { AppService } from 'src/app.service';
 
 @Injectable()
 export class UrlService {
-  constructor(@InjectModel(Url.name) private urlModel: Model<UrlDocument>, private appService: AppService) { }
+  constructor(
+    @InjectModel(Url.name) private urlModel: Model<UrlDocument>,
+    private appService: AppService
+  ) {}
 
   async shortenUrl(url: ShortenURLDto) {
-    const { longUrl, title, description, keywords } = url;
+    const { longUrl, title, description, keywords, bookmark } = url;
 
     // checks if longurl is a valid URL
     if (!isURL(longUrl)) {
@@ -34,7 +37,14 @@ export class UrlService {
       if (existingUrl) return existingUrl;
 
       // Create and save the new URL record in the database
-      const newUrl = new this.urlModel({ longUrl, urlCode, title, description, keywords });
+      const newUrl = new this.urlModel({
+        longUrl,
+        urlCode,
+        title,
+        description,
+        keywords,
+        bookmark,
+      });
       const savedUrl = await newUrl.save();
 
       return savedUrl;
@@ -54,17 +64,25 @@ export class UrlService {
       throw new NotFoundException('Resource Not Found');
     }
   }
-  
-  async findAll(page = 1, itemsPerPage?: number) {
-    const pageOptions = await this.appService.pagination(this.urlModel, page, itemsPerPage || 20);
+
+  async findAll(page = 1, itemsPerPage = 20, bookmark = 0) {
+    const findFilter =
+      bookmark === 1 ? { bookmark: { $eq: 1 } } : { bookmark: { $ne: 1 } };
+
+    const pageOptions = await this.appService.pagination(
+      this.urlModel,
+      page,
+      itemsPerPage,
+      findFilter
+    );
 
     return {
-      pagination: pageOptions, results: await this.urlModel
-        .find()
+      pagination: pageOptions,
+      results: await this.urlModel
+        .find(findFilter)
         .sort({ _id: 1 })
-        .skip(pageOptions.skip).limit(itemsPerPage)
+        .skip(pageOptions.skip)
+        .limit(itemsPerPage),
     };
-
   }
 }
-

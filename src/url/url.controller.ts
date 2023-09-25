@@ -1,5 +1,5 @@
 import { UrlService } from './url.service';
-import { PaginationParams, ShortenURLDto } from './url.dto';
+import { QueryParams, ShortenURLDto } from './url.dto';
 import { Body, Controller, Get, Param, Post, Query, Res } from '@nestjs/common';
 
 @Controller()
@@ -7,8 +7,8 @@ export class UrlController {
   constructor(private service: UrlService) {}
 
   @Get('urls')
-  async getAll(@Query() { page, items }: PaginationParams) {
-    return await this.service.findAll(page, items);
+  async getAll(@Query() { page, items, bookmark }: QueryParams) {
+    return await this.service.findAll(page, items, bookmark);
   }
 
   @Get(':code')

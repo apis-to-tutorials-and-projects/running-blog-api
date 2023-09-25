@@ -22,7 +22,10 @@ export class Url {
     description: string;
 
     @Prop()
-    keywords: string[]
+    keywords: string[];
+
+    @Prop()
+    bookmark: number;
 }
 
 export const UrlSchema = SchemaFactory.createForClass(Url); 
