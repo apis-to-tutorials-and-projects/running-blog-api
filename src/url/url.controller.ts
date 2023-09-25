@@ -1,14 +1,15 @@
 import { UrlService } from './url.service';
 import { QueryParams, ShortenURLDto } from './url.dto';
-import { Body, Controller, Get, Param, Post, Query, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Req, Res } from '@nestjs/common';
+import { Request } from 'express';
 
 @Controller()
 export class UrlController {
   constructor(private service: UrlService) {}
 
   @Get('urls')
-  async getAll(@Query() { page, items, bookmark }: QueryParams) {
-    return await this.service.findAll(page, items, bookmark);
+  async getAll(@Query() { page, items, bookmark }: QueryParams,  @Req() req: Request) {
+    return await this.service.findAll(page, items, bookmark, `${req.protocol}://${req.get('Host')}`);
   }
 
   @Get(':code')

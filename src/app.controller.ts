@@ -1,6 +1,6 @@
 import { AppService } from './app.service';
-import {Controller, Get, Req} from '@nestjs/common';
-import {Request} from 'express';
+import { Controller, Get, Req } from '@nestjs/common';
+import { Request } from 'express';
 
 @Controller()
 export class AppController {
@@ -12,8 +12,16 @@ export class AppController {
   }
 
   @Get('/current-path')
-    current(@Req() req: Request): void {
-        console.log(req.originalUrl)
-        console.log(`${req.protocol}://${req.get('Host')}${req.originalUrl}`);
-    }
+  current(
+    @Req() req: Request
+  ): {
+    all: string;
+    host: string;
+  } {
+    console.log(req.originalUrl);
+    return {
+      all: `${req.protocol}://${req.get('Host')}${req.originalUrl}`,
+      host: `${req.protocol}://${req.get('Host')}`,
+    };
+  }
 }

@@ -65,7 +65,14 @@ export class UrlService {
     }
   }
 
-  async findAll(page = 1, itemsPerPage = 20, bookmark = 0) {
+  private completeResults (results: UrlDocument[], host: string)  {
+    return results.map((item) => {
+      item.shortUrl = `${host}/${item.urlCode}`;
+      return item;
+    })
+  }
+
+  async findAll(page = 1, itemsPerPage = 20, bookmark = 0, host: string) {
     const findFilter =
       bookmark === 1 ? { bookmark: { $eq: 1 } } : { bookmark: { $ne: 1 } };
 
@@ -78,11 +85,11 @@ export class UrlService {
 
     return {
       pagination: pageOptions,
-      results: await this.urlModel
+      results: this.completeResults(await this.urlModel
         .find(findFilter)
         .sort({ _id: 1 })
         .skip(pageOptions.skip)
-        .limit(itemsPerPage),
+        .limit(itemsPerPage), host),
     };
   }
 }

@@ -16,6 +16,9 @@ export class Url {
     longUrl: string;
 
     @Prop()
+    shortUrl: string;
+
+    @Prop()
     title: string;
 
     @Prop()
