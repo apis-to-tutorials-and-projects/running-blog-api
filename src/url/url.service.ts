@@ -45,10 +45,12 @@ export class UrlService {
         keywords,
         bookmark,
       });
-      const savedUrl = await newUrl.save();
+      
+      // Send data to persist new short url with data
+      await newUrl.save();
 
       return {
-        ...savedUrl,
+        ...url,
         shortUrl: `${host}/${urlCode}`,
       };
     } catch (error) {
@@ -75,10 +77,10 @@ export class UrlService {
     });
   }
 
-  async findAll(page = 1, itemsPerPage = 20, bookmark = false, host: string) {
+  async findAll(page = 1, itemsPerPage = 20, bookmark = 0, host: string) {
     const findFilter = bookmark
-      ? { bookmark: { $eq: true } }
-      : { bookmark: { $ne: true } };
+      ? { bookmark: { $eq: 1 } }
+      : { bookmark: { $ne: 1 } };
 
     const pageOptions = await this.appService.pagination(
       this.urlModel,

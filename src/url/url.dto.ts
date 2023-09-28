@@ -6,8 +6,7 @@ import {
   Min,
   IsArray,
   ArrayMinSize,
-  IsBoolean,
-  isNumber,
+  IsBoolean
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -48,7 +47,7 @@ export class QueryParams {
   items?: number;
 
   @IsOptional()
-  @Type(() => Boolean)
+  @Type(() => Number)
   @IsNumber()
-  bookmark?: boolean;
+  bookmark?: number;
 }
