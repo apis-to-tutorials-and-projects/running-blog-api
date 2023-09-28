@@ -19,7 +19,7 @@ export class UrlService {
     private appService: AppService
   ) {}
 
-  async shortenUrl(url: ShortenURLDto) {
+  async shortenUrl(url: ShortenURLDto, host?: string) {
     const { longUrl, title, description, keywords, bookmark } = url;
 
     // checks if longurl is a valid URL
@@ -47,7 +47,10 @@ export class UrlService {
       });
       const savedUrl = await newUrl.save();
 
-      return savedUrl;
+      return {
+        ...savedUrl,
+        shortUrl: `${host}/${urlCode}`,
+      };
     } catch (error) {
       console.log(error);
       throw new UnprocessableEntityException('Server Error');
@@ -65,16 +68,17 @@ export class UrlService {
     }
   }
 
-  private completeResults (results: UrlDocument[], host: string)  {
+  private completeResults(results: UrlDocument[], host: string) {
     return results.map((item) => {
       item.shortUrl = `${host}/${item.urlCode}`;
       return item;
-    })
+    });
   }
 
-  async findAll(page = 1, itemsPerPage = 20, bookmark = 0, host: string) {
-    const findFilter =
-      bookmark === 1 ? { bookmark: { $eq: 1 } } : { bookmark: { $ne: 1 } };
+  async findAll(page = 1, itemsPerPage = 20, bookmark = false, host: string) {
+    const findFilter = bookmark
+      ? { bookmark: { $eq: true } }
+      : { bookmark: { $ne: true } };
 
     const pageOptions = await this.appService.pagination(
       this.urlModel,
@@ -85,11 +89,14 @@ export class UrlService {
 
     return {
       pagination: pageOptions,
-      results: this.completeResults(await this.urlModel
-        .find(findFilter)
-        .sort({ _id: 1 })
-        .skip(pageOptions.skip)
-        .limit(itemsPerPage), host),
+      results: this.completeResults(
+        await this.urlModel
+          .find(findFilter)
+          .sort({ _id: 1 })
+          .skip(pageOptions.skip)
+          .limit(itemsPerPage),
+        host
+      ),
     };
   }
 }

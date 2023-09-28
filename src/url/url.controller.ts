@@ -25,8 +25,9 @@ export class UrlController {
   @Post('shorten-url')
   shortenUrl(
     @Body()
-    url: ShortenURLDto
+    url: ShortenURLDto,
+    @Req() req: Request
   ) {
-    return this.service.shortenUrl(url);
+    return this.service.shortenUrl(url, `${req.protocol}://${req.get('Host')}`);
   }
 }

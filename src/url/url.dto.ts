@@ -48,7 +48,7 @@ export class QueryParams {
   items?: number;
 
   @IsOptional()
-  @Type(() => Number)
+  @Type(() => Boolean)
   @IsNumber()
-  bookmark?: number;
+  bookmark?: boolean;
 }

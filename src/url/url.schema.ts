@@ -28,7 +28,7 @@ export class Url {
     keywords: string[];
 
     @Prop()
-    bookmark: number;
+    bookmark: boolean;
 }
 
 export const UrlSchema = SchemaFactory.createForClass(Url); 
