@@ -1,0 +1,53 @@
+{
+	"info": {
+		"_postman_id": "c8da7c21-19dc-41c4-b43a-773c741cb663",
+		"name": "URL Shortener",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20363965"
+	},
+	"item": [
+		{
+			"name": "Crear enlace acortado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"longUrl\": \"https://medium.com/itnext/easy-typescript-monorepo-with-npm-workspaces-b271d81837e7\",\r\n   \"title\": \"Nx Monorepos - Typescript\",\r\n    \"description\": \"Guía básica sobre como trabajar en proyectos Typescript con Monorepo en Nx\",\r\n   \"keywords\": [\"typescript\", \"nx\", \"monorepo\", \"basic\"],\r\n   \"bookmark\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SHORTEN_UP_LOCAL}}shorten-url",
+					"host": [
+						"{{SHORTEN_UP_LOCAL}}shorten-url"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener enlaces",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/url/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"url",
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

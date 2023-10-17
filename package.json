@@ -1,10 +1,13 @@
 {
   "name": "url-shortener",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "0.1.0",
+  "description": "Este proyecto es un acortador de URLs que utiliza tecnologías modernas para brindar un servicio eficiente y escalable",
+  "author": {
+    "name": "Anartz Mugika Ledo",
+    "email": "mugan86@gmail.com"
+  },
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
