@@ -22,27 +22,65 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Acortador de URLs
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Este proyecto es un acortador de URLs que utiliza tecnologías modernas para brindar un servicio eficiente y escalable. Hemos desarrollado esta herramienta utilizando las siguientes tecnologías:
 
-## Installation
+- **NestJS como Framework**: NestJS es un framework de desarrollo de aplicaciones en TypeScript para Node.js. Proporciona una arquitectura escalable y modular que facilita la creación de servicios web sólidos y seguros. En nuestro proyecto, NestJS se encarga de la lógica de negocio y la exposición de la API.
+
+- **MongoDB como Base de Datos**: Utilizamos MongoDB, una base de datos NoSQL, para almacenar y gestionar la información necesaria para nuestro acortador de URLs. Esta elección nos permite almacenar datos de manera flexible y escalable, lo que es esencial para un servicio de acortamiento de URLs.
+
+- **Nanoid para la Generación de Códigos de URL Acortadas**: Para generar códigos únicos y cortos para las URLs, empleamos la biblioteca Nanoid. Esto garantiza que nuestras URLs acortadas sean compactas y seguras, lo que es esencial para una experiencia de usuario eficiente y segura.
+
+Nuestro acortador de URLs es una solución simple y efectiva para convertir URLs largas en enlaces más manejables. Ofrece un alto rendimiento y se beneficia de la escalabilidad inherente de las tecnologías utilizadas.
+
+¡Esperamos que esta herramienta sea útil para tus necesidades de acortamiento de URLs!
+
+## ¿Como podemos trabajar con ello?
+
+Podemos hacer uso de este proyecto siguiendo estas sencillas instrucciones
+
+1. Clonar proyecto:
 
 ```bash
-$ npm install
+git clone https://github.com/anartzdev/url-shortener.git
 ```
 
-## Running the app
+2. Seleccionar la versión de Node con la que se trabaja en este proyecto:
+
+```bash
+nvm use
+```
+
+3. Instalar las dependencias requeridas
+
+```bash
+npm install
+```
+
+4. En la raíz añadir la conexión de nuestra Base de datos de MongoDB en el fichero `.env`:
+
+```env
+DATABASE=<MONGODB_DATABASE_CONNECTION_STRING>
+```
+
+Por ejemplo:
+
+```env
+DATABASE=mongodb://localhost:27017/example
+```
+
+5. Arrancar la aplicación
 
 ```bash
 # development
-$ npm run start
+npm run start
 
 # watch mode
-$ npm run start:dev
+npm run start:dev
 
 # production mode
-$ npm run start:prod
+npm run start:prod
 ```
 
 ## Test
@@ -58,25 +96,23 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Uso de la API
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+A continuación os dejo el fichero JSON de las operaciones que se pueden realizar con POSTMAN:
 
-## Stay in touch
+[API URL Shortener](./URL%20Shortener.postman_collection.json)
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Sobre el autor
 
-## License
+- Author - [Anartz Mugika Ledo](https://kamilmysliwiec.com)
+- Url del proyecto - [https://shorten-up.vercel.app/urls](https://shorten-up.vercel.app/urls)
+- Twitter - [@mugan86](https://twitter.com/mugan86)
 
-Nest is [MIT licensed](LICENSE).
+## Licencia
 
-## Reference
+ShortenUrls con Nest está bajo la licencia [MIT licensed](LICENSE).
+
+## Referencias que he usado de apoyo
 
 * Shortener: https://es.linux-console.net/?p=6523#gsc.tab=0
 * Pagination: https://wanago.io/2021/09/13/api-nestjs-pagination-mongodb-mongoose/
-
-## Production URL
-
-* [Shortener URLs List](https://shorten-up.vercel.app/url/list)
