@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
+import { get } from './helpers/pagination';
 
 @Injectable()
 export class AppService {
@@ -29,15 +30,6 @@ export class AppService {
       page = 1;
     }
     const total = await model.find(filter).count();
-    const pages = Math.ceil(total / itemsPage);
-    return {
-      skip: (page - 1) * itemsPage,
-      itemsPage,
-      total,
-      pages: {
-        total: pages,
-        current: page
-      }
-    };
+    return get(total, itemsPage, page)
   }
 }

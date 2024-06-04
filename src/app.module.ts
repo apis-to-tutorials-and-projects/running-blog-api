@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { UrlModule } from './url/url.module';
+import { PostModule } from './post/post.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { UrlModule } from './url/url.module';
       process.env.DATABASE
     ),
     UrlModule,
+    PostModule
   ],
   controllers: [AppController],
   providers: [AppService],

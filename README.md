@@ -22,6 +22,16 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+## Adaptar desde el siguiente proyecto
+
+https://github.com/mugan86/book-content-api/tree/master
+
+https://openui.fly.dev/
+
+## Hook estado de conexión
+
+https://gist.github.com/anartzdev/bd8fdb2864c070bb4070f3a14bffbf7f
+
 ## Acortador de URLs
 
 Este proyecto es un acortador de URLs que utiliza tecnologías modernas para brindar un servicio eficiente y escalable. Hemos desarrollado esta herramienta utilizando las siguientes tecnologías:
