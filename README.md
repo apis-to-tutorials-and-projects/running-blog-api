@@ -32,6 +32,15 @@ https://openui.fly.dev/
 
 https://gist.github.com/anartzdev/bd8fdb2864c070bb4070f3a14bffbf7f
 
+## Añadir HTML en las apps de Qwik
+
+```html
+<span
+          dangerouslySetInnerHTML={`<p>Hola <code>Anartz</code></p><p>Hola <code>Anartz</code></p>
+`}
+        ></span>
+```
+
 ## Acortador de URLs
 
 Este proyecto es un acortador de URLs que utiliza tecnologías modernas para brindar un servicio eficiente y escalable. Hemos desarrollado esta herramienta utilizando las siguientes tecnologías:
